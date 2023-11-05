@@ -10,7 +10,7 @@ setup(
     
     # Other metadata
     author='Jens Temminghoff',
-    author_email='jens.temminghoff@.neura-robotics.com',
+    author_email='jens.temminghoff@neura-robotics.com',
     description='A simple package for Dualquaternion and Quaternion maths',
     keywords='quaternion dualquaternion',
 )
