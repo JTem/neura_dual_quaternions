@@ -15,5 +15,8 @@ setup(
     keywords=['quaternion', 'dualquaternion', 'robotics', 'geometric algebra', 'kinematics'],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Inteded Audience :: Developers",]
+        "Inteded Audience :: Developers",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
 )
