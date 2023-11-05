@@ -12,5 +12,8 @@ setup(
     author='Jens Temminghoff',
     author_email='jens.temminghoff@neura-robotics.com',
     description='A simple package for Dualquaternion and Quaternion maths',
-    keywords='quaternion dualquaternion',
+    keywords=['quaternion', 'dualquaternion', 'robotics', 'geometric algebra', 'kinematics'],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "Inteded Audience :: Developers",]
 )
