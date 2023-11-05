@@ -4,23 +4,10 @@ This package provides a simple implementation of Quaternion and DualQuaternion c
 
 ## Installation
 
-Clone this repository to your local machine using `git`:
+You can install the library using `pip`:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
-```
-
-## Dependencies
-
-Before using this package, you need to have Python installed on your system. The package requires the following Python libraries:
-
-- `numpy`
-
-You can install the required libraries using `pip`:
-
-```bash
-pip install numpy
+pip install neura_dual_quaternions
 ```
 
 ## Usage
@@ -30,15 +17,19 @@ Here's how to use the `Quaternion` and `DualQuaternion` classes:
 ### Quaternion
 
 ```python
-from quaternion_package import Quaternion
-import math
+import numpy as np
+from neura_dual_quaternions import Quaternion
 
 # Create a quaternion
-q = Quaternion(w=1, x=0, y=1, z=0)
+q = Quaternion(1,0,0,0)
 
 # Quaternion multiplication
-q1 = Quaternion(w=math.cos(math.pi/4), x=0, y=math.sin(math.pi/4), z=0)
-q2 = Quaternion(w=0, x=1, y=0, z=0)
+rotation_axis_x = np.array([1,0,0])
+rotation_axis_z = np.array([0,1,0])
+
+q1 = Quaternion.fromAxisAngle(0.2*np.pi,rotation_axis_x)
+q2 = Quaternion.fromAxisAngle(0.5*np.pi,rotation_axis_y)
+
 q_product = q1 * q2
 
 print(q_product)
@@ -47,21 +38,20 @@ print(q_product)
 ### DualQuaternion
 
 ```python
-from quaternion_package import DualQuaternion, Quaternion
+from neura_dual_quaternions import DualQuaternion
 
-# Create dual quaternions
-dq1 = DualQuaternion(
-    real=Quaternion(w=1, x=0, y=1, z=0),
-    dual=Quaternion(w=0, x=0.5, y=0.5, z=0)
-)
+# Create identity dual quaternions
+dq1 = DualQuaternion(1,0,0,0, 0,0,0,0)
 
-dq2 = DualQuaternion(
-    real=Quaternion(w=0, x=1, y=0, z=0),
-    dual=Quaternion(w=0, x=0, y=0.5, z=0.5)
-)
+rotation_axis_x = np.array([1,0,0])
+
+rot = Quaternion.fromAxisAngle(0.2*np.pi,rotation_axis_x)
+pos = np.array([1, 0.4, 0.55])
+
+dq2 = DualQuaternion.fromQuatPos(rot,pos)
 
 # DualQuaternion addition
-dq_sum = dq1 + dq2
+dq_sum = dq1 * dq2
 
 print(dq_sum)
 ```
