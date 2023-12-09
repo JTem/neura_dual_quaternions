@@ -330,8 +330,8 @@ class Quaternion:
     def slerp(cls, qa, qb, s):
         qm = Quaternion(1,0,0,0)
         
-        dot_product = qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z
-
+        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0)
+        
         short_path = False
         if short_path and dot_product < 0.0:
             qb = Quaternion(-qb.w, -qb.x, -qb.y, -qb.z)
@@ -341,7 +341,7 @@ class Quaternion:
         halfTheta = math.atan2(math.sqrt(1.0 - dot_product*dot_product), dot_product)
         
         # If the angle is close to 2*pi, return the starting quaternion to avoid the singularity
-        if abs(halfTheta - math.pi) < 1e-6:
+        if abs(halfTheta - math.pi) < 1e-6 or abs(halfTheta) < 1e-6:
             return qa
             
         sinHalfTheta = math.sin(halfTheta)
@@ -361,7 +361,7 @@ class Quaternion:
     def slerp_dot(cls, qa, qb, s, s_dot):
         qm = Quaternion(0,0,0,0)
         
-        dot_product = qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z
+        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0)
 
         short_path = False
         if short_path and dot_product < 0.0:
@@ -372,7 +372,7 @@ class Quaternion:
         halfTheta = math.atan2(math.sqrt(1.0 - dot_product*dot_product), dot_product)
 
         # If the angle is close to 2*pi, return the starting quaternion to avoid the singularity
-        if abs(halfTheta - math.pi) < 1e-6:
+        if abs(halfTheta - math.pi) < 1e-6 or abs(halfTheta) < 1e-6:
             return Quaternion(0,0,0,0)
             
         sinHalfTheta = math.sin(halfTheta)
@@ -390,7 +390,7 @@ class Quaternion:
     def slerp_ddot(cls, qa, qb, s, s_dot, s_ddot):
         qm = Quaternion(0,0,0,0)
         
-        dot_product = qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z
+        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0)
 
         short_path = False
         if short_path and dot_product < 0.0:
@@ -400,7 +400,7 @@ class Quaternion:
         halfTheta = math.atan2(math.sqrt(1.0 - dot_product*dot_product), dot_product)
 
         # If the angle is close to 2*pi, return the starting quaternion to avoid the singularity
-        if abs(halfTheta - math.pi) < 1e-6:
+        if abs(halfTheta - math.pi) < 1e-6 or abs(halfTheta) < 1e-6:
             return Quaternion(0,0,0,0)
             
         sinHalfTheta = math.sin(halfTheta)
