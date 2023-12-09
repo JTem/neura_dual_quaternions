@@ -330,7 +330,7 @@ class Quaternion:
     def slerp(cls, qa, qb, s):
         qm = Quaternion(1,0,0,0)
         
-        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0)
+        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0))
         
         short_path = False
         if short_path and dot_product < 0.0:
@@ -361,7 +361,7 @@ class Quaternion:
     def slerp_dot(cls, qa, qb, s, s_dot):
         qm = Quaternion(0,0,0,0)
         
-        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0)
+        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0))
 
         short_path = False
         if short_path and dot_product < 0.0:
@@ -390,7 +390,7 @@ class Quaternion:
     def slerp_ddot(cls, qa, qb, s, s_dot, s_ddot):
         qm = Quaternion(0,0,0,0)
         
-        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0)
+        dot_product = min(1.0, max(qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z, -1.0))
 
         short_path = False
         if short_path and dot_product < 0.0:
