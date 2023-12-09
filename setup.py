@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='neura_dual_quaternions',
-    version='0.0.3',
+    version='0.0.4',
     packages=find_packages(),
     install_requires=[
         'numpy'
